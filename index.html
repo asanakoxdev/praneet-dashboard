@@ -177,7 +177,7 @@ async function loadToday(){
 
 async function loadTasks(){
   try{
-    const data=await query(DB.tasks,{filter:{and:[{property:'Status',select:{does_not_equal:'Done'}},{property:'Status',select:{does_not_equal:'Waiting on Ranveer'}},{or:[{property:'Tier',select:{equals:'Daily'}},{property:'Tier',select:{equals:'Short'}}]}]},sorts:[{property:'Tier',direction:'ascending'}],page_size:20});
+    const data=await query(DB.tasks,{filter:{and:[{property:'Status',select:{equals:'To Do'}},{property:'Status',select:{equals:'In progress'}},{or:[{property:'Tier',select:{equals:'Daily'}},{property:'Tier',select:{equals:'Short'}}]}]},sorts:[{property:'Tier',direction:'ascending'}],page_size:20});
     const pages=data.results||[];
     document.getElementById('taskCount').textContent=pages.length;
     if(!pages.length){empty('taskList');return;}
