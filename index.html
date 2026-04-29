@@ -249,7 +249,7 @@ async function loadAll(){
 function saveToken(){
   const val=document.getElementById('tokenInput').value.trim();
   if(!val){alert('Please enter your Notion token');return;}
-  localStorage.setItem('praneet_notion_token',val);
+  try{localStorage.setItem('praneet_notion_token',val);}catch(e){}
   TOKEN=val;showApp();
 }
 
@@ -271,7 +271,7 @@ function showApp(){
 }
 
 (function(){
-  const saved=localStorage.getItem('praneet_notion_token');
+  const saved=function(){try{return localStorage.getItem('praneet_notion_token');}catch(e){return null;}}();
   if(saved){TOKEN=saved;showApp();}
 })();
 </script>
