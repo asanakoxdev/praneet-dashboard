@@ -250,7 +250,7 @@ function saveToken(){
   const val=document.getElementById('tokenInput').value.trim();
   if(!val){alert('Please enter your Notion token');return;}
   try{localStorage.setItem('praneet_notion_token',val);}catch(e){}
-  TOKEN=val;showApp();
+  TOKEN=val;try{showApp();}catch(e){document.body.innerHTML+='<div style="color:red;padding:20px">Error: '+e.toString()+'</div>';}
 }
 
 function resetToken(){
